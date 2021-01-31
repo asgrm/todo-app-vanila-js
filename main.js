@@ -6,6 +6,10 @@ const state = [];
 function handleSubmit(e) {
   e.preventDefault();
   const text = e.target.item.value;
+  if(text === ''){
+    return;
+  }
+  
   const item = {
     text,
     id: Date.now(),
@@ -19,7 +23,7 @@ function drawList () {
   const html = state.map((elem) => `
   <li>
   <input type="checkbox" value="${elem.id}">
-  <span>${elem.text}</span>
+  <span class="itemName">${elem.text}</span>
   <button value="${elem.id}">&times;</button>
   </li>
   `).join('');
