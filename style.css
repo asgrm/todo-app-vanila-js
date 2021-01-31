@@ -40,8 +40,7 @@ body {
 .add-item-form input[type="text"] {
   border: none;
   box-shadow: inset 0 0 1px var(--grey);
-  border-right: none;
-  padding: 5px;
+  padding: 10px;
 }
 
 .add-item-form input[type="submit"] {
@@ -69,7 +68,7 @@ input[type="checkbox"]:checked + .item-name {
   opacity: 0.5;
 }
 
-.item-name + button {
+.list li button {
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.1s;
@@ -81,6 +80,6 @@ input[type="checkbox"]:checked + .item-name {
   border-radius: 5px;
 }
 
-.item-name + button:hover {
+.list li button:hover {
   transform: scale(1.1);
 }
