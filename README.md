@@ -1,1 +1,1 @@
-# todo-app-vanila-js
+# Simple vanila js todo app
