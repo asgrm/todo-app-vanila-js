@@ -41,6 +41,14 @@ function updateLocalStorage() {
   console.log('done');
 }
 
+function restoreFromLocalStorage() {
+  console.log('restored');
+  const el = JSON.parse(localStorage.getItem('state'));
+  console.log(el);
+  state.push(...el);
+  list.dispatchEvent(new CustomEvent('updateApp'));
+}
+
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('updateApp', drawList);
 list.addEventListener('updateApp', updateLocalStorage)
@@ -50,3 +58,4 @@ list.addEventListener('click', (e) => {
     removeItem(id);
   }
 })
+restoreFromLocalStorage();
