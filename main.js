@@ -36,8 +36,14 @@ function removeItem(id){
   list.dispatchEvent(new CustomEvent('updateApp'));
 } 
 
+function updateLocalStorage() {
+  localStorage.setItem('state', JSON.stringify(state));
+  console.log('done');
+}
+
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('updateApp', drawList);
+list.addEventListener('updateApp', updateLocalStorage)
 list.addEventListener('click', (e) => {
   const id = +e.target.value;
   if (e.target.closest('button')) {
