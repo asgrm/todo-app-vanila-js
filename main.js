@@ -23,7 +23,7 @@ function handleSubmit(e) {
 function drawList () {
   const html = state.map((elem) => `
   <li>
-  <input type="checkbox" value="${elem.id}">
+  <input type="checkbox" value="${elem.id}" ${elem.complete && 'checked'}>
   <span class="itemName">${elem.text}</span>
   <button value="${elem.id}">&times;</button>
   </li>
@@ -39,6 +39,12 @@ function removeItem(id){
 function updateLocalStorage() {
   localStorage.setItem('state', JSON.stringify(state));
   console.log('done');
+}
+
+function markItem(id) {
+  const elem = state.find((elem) => elem.id === id);
+  elem.complete = !elem.complete;
+  list.dispatchEvent(new CustomEvent('updateApp'));
 }
 
 function restoreFromLocalStorage() {
@@ -57,5 +63,9 @@ list.addEventListener('click', (e) => {
   if (e.target.closest('button')) {
     removeItem(id);
   }
+  if (e.target.closest('[type="checkbox"]')) {
+    markItem(id);
+  }
+
 })
 restoreFromLocalStorage();
