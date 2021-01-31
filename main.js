@@ -1,7 +1,7 @@
 const form = document.querySelector(".add-item-form");
 const list = document.querySelector(".list")
 
-const state = [];
+let state = [];
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -19,6 +19,7 @@ function handleSubmit(e) {
   e.target.reset();
   list.dispatchEvent(new CustomEvent('updateApp'));
 }
+
 function drawList () {
   const html = state.map((elem) => `
   <li>
@@ -30,5 +31,16 @@ function drawList () {
   list.innerHTML = html;
 }
 
+function removeItem(id){
+  state = state.filter((elem) => elem.id !== id);
+  list.dispatchEvent(new CustomEvent('updateApp'));
+} 
+
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('updateApp', drawList);
+list.addEventListener('click', (e) => {
+  const id = +e.target.value;
+  if (e.target.closest('button')) {
+    removeItem(id);
+  }
+})
