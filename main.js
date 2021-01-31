@@ -38,7 +38,6 @@ function removeItem(id){
 
 function updateLocalStorage() {
   localStorage.setItem('state', JSON.stringify(state));
-  console.log('done');
 }
 
 function markItem(id) {
@@ -48,9 +47,7 @@ function markItem(id) {
 }
 
 function restoreFromLocalStorage() {
-  console.log('restored');
   const el = JSON.parse(localStorage.getItem('state'));
-  console.log(el);
   state.push(...el);
   list.dispatchEvent(new CustomEvent('updateApp'));
 }
